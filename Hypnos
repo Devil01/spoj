@@ -1,0 +1,102 @@
+#include<bits/stdc++.h>
+#include<stdlib.h>
+#include<cstdio>
+#include<utility>
+#include<vector>
+#include<iostream>
+#include<string.h>
+#include<map>
+#include<algorithm>
+#include<sstream>
+using namespace std;
+#define pb push_back
+#define mp make_pair
+#define clr(x) x.clear()
+#define For(i,a,b) for(i=a;i<b;i++)
+#define loop(i,b) for(i=0;i<b;i++)
+#define Loop(i,b) for(i=1;i<=b;i++)
+#ifndef ONLINE_JUDGE
+#define gc getchar
+#else
+#define gc getchar_unlocked
+#endif
+const int MOD=1e9+7;
+typedef pair<int,int> PII;
+typedef vector<PII> VPII;
+typedef vector<int> VI;
+typedef vector<VI>VII;   
+typedef long long LL;
+#define long long LL;
+#include<math.h>
+//NAVIN
+//Lets do something new...
+// :) :) :)
+LL read_int()
+{
+    char c = gc();
+    while(c<'0' || c>'9') c = gc();
+    
+    LL  ret = 0;
+    while(c>='0' && c<='9')
+    {
+        ret = 10 * ret + c - 48;
+        c = gc();
+    }
+    return ret;
+}
+/*int main()
+{
+    int T,N,a,b;
+    T=read_int();
+    while(T--)
+    {
+        N=read_int();
+          VPII V;
+          while(N--){
+          a=read_int();
+          b=read_int();
+          V.pb(mp(a,b));
+          }
+          sort(V.begin(),V.end());
+          VPII::iterator it;
+          int cnt=1;
+          for(it=V.begin()+1;it!=V.end();it++)
+          {
+              if(!((*it).first>=(*(it-1)).first&&(*it).first<=(*(it-1)).second||(((*(it-1)).second+1)==(*it).first)))
+                    cnt++;
+          }
+          cout<<cnt<<endl;
+    }
+    return 0;
+}
+*/
+LL BreakNumber(LL N){
+   LL sum=0;
+   while(N){
+    int rem=N%10;
+    sum+=(rem*rem);
+    N/=10;
+   }
+   return sum;
+}
+int main()
+{
+  LL N,sum=0,cnt=0;
+  N=read_int();
+  set<LL>S;
+  S.insert(N);
+  while(N!=1)
+  {
+     N=BreakNumber(N);
+      if(S.find(N)!=S.end()){
+        cnt=-1;
+        break;
+      }
+      else{
+        S.insert(N);
+        cnt++;
+      }
+  }
+  cout<<cnt<<endl;
+  return 0;
+}
